@@ -1,26 +1,23 @@
 basic.showLeds(`
     . . . . .
     . . . . .
-    . . # . .
+    . . . . .
     . . . . .
     . . . . .
     `)
 basic.forever(function () {
-    basic.showIcon(IconNames.Yes)
+    led.toggle(2, 2)
     serial.writeValue("T", envirobit.getTemperatureDecimal())
     serial.writeValue("H", envirobit.getHumidityDecimal())
     serial.writeValue("P", envirobit.getPressureDecimal())
     serial.writeValue("L", envirobit.getLight())
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . # . .
-        . . . . .
-        . . . . .
-        `)
-    basic.pause(5000)
+    basic.pause(1000)
+    led.toggle(2, 2)
+    basic.pause(4000)
 })
 basic.forever(function () {
-    basic.pause(1000)
-    led.toggle(0, 0)
+    led.plot(0, 0)
+    basic.pause(100)
+    led.unplot(0, 0)
+    basic.pause(900)
 })
